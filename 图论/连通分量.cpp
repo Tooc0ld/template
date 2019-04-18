@@ -1,4 +1,4 @@
-//±ßË«Á¬Í¨·ÖÁ¿
+//è¾¹åŒè¿é€šåˆ†é‡
 int dfn[N], low[N], bccno[N];
 int dfs_cnt, bcc_cnt;
 stack<int> S;
@@ -7,11 +7,11 @@ vector<int> G[N], bcc[N];
 void dfs(int u, int fa) {
     dfn[u] = low[u] = ++dfs_cnt;
     S.push(u);
-    for(int v:G[u]) if(v != fa) { //ÓĞÖØ±ßÊ±¸Ä³ÉÅĞ±ß
+    for(int v:G[u]) if(v != fa) { //æœ‰é‡è¾¹æ—¶æ”¹æˆåˆ¤è¾¹
         if(!dfn[v]) dfs(v, u), low[u] = min(low[u], low[v]);
         else if(dfn[v] < dfn[u]) low[u] = min(low[u], dfn[v]);
     }
-    if(low[u] == dfn[u]) { //¸ÃµãÊÇ¸îµã
+    if(low[u] == dfn[u]) { //è¯¥ç‚¹æ˜¯å‰²ç‚¹
         bcc_cnt++;
         bcc[bcc_cnt].clear();
         for(;;) {
@@ -23,7 +23,7 @@ void dfs(int u, int fa) {
     }
 }
 
-//µãË«Á¬Í¨·ÖÁ¿
+//ç‚¹åŒè¿é€šåˆ†é‡
 int dfn[N], low[N];
 int dfs_cnt;
 stack<PII> S;
@@ -36,7 +36,7 @@ void dfs(int u, int fa) {
             S.push({u, v});
             dfs(v, u);
             low[u] = min(low[u], low[v]);
-            if(low[u] >= dfn[u]) { //¸ÃµãÊÇ¸îµã
+            if(low[u] >= dfn[u]) { //è¯¥ç‚¹æ˜¯å‰²ç‚¹
                 for(;;) {
                     PII e = S.top(); S.pop();
                     if(e.fi==u && e.se==v) break;
@@ -50,7 +50,7 @@ void dfs(int u, int fa) {
     }
 }
 
-//Ç¿Á¬Í¨·ÖÁ¿
+//å¼ºè¿é€šåˆ†é‡
 int dfn[N], low[N], sccno[N];
 int dfs_cnt, scc_cnt;
 stack<int> S;
@@ -65,7 +65,7 @@ void dfs(int u) {
             low[u] = min(low[u], low[v]);
         }
         else if(!sccno[v]) low[u] = min(low[u], dfn[v]);
-        //²»ÊôÓÚÆäËûsccµÄµê
+        //ä¸å±äºå…¶ä»–sccçš„ç‚¹
     }
     if(low[u] == dfn[u]) {
         scc_cnt++;
